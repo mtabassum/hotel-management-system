@@ -1,0 +1,55 @@
+﻿@model IEnumerable<HotelEntity.Booking>
+
+@{
+    ViewBag.Title = "Booking";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+@using (Html.BeginForm("Booking", "Admin"))
+{
+    <div style="width:30%;margin-left:35%;margin-bottom:2%">@Html.DropDownList("hanme", @ViewBag.Hotel as SelectList,"Select") @Html.Editor("bDate", new { htmlAttributes = new { @type="Date" , } }) <input type="submit" value="Search" /></div>
+
+}
+<div style="width:70%;margin-left:15%;">
+    <table class="table">
+        <tr>
+            <th>
+                Client Name
+            </th>
+            <th>
+                Mobile
+            </th>
+            <th>
+                Hotel Name
+            </th>
+            <th>
+                Booking Date
+            </th>
+            <th>
+                Details
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.mobile)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.hotelname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.bookingdate)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "BookingDetails", new { id = item.id })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

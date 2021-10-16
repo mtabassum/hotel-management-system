@@ -1,0 +1,160 @@
+﻿@model HotelEntity.Booking
+
+@{
+    ViewBag.Title = "Booking";
+    Layout = "~/Views/Shared/HomeLayout.cshtml";
+}
+<script type="text/javascript">
+    function T_A_cal() {
+        var roomPrice =  document.getElementById('R_price').value;
+        var totalRoom = document.getElementById('T_room').value;
+        var TotalDay = document.getElementById('T_day').value;
+
+        if (totalRoom != null && TotalDay != null) {
+            var tamount = (roomPrice * totalRoom) * TotalDay;
+            document.getElementById('T_amount').value = tamount;
+        }
+    }
+    function D_cal() {
+
+        var tamount = document.getElementById('T_amount').value;
+        if (tamount != null && document.getElementById('payment').value !="") {
+            var due = tamount - document.getElementById('payment').value;
+            document.getElementById('due').value = due;
+        }
+    }
+
+    function final() {
+
+        var roomPrice = document.getElementById('R_price').value;
+        var totalRoom = document.getElementById('T_room').value;
+        var TotalDay = document.getElementById('T_day').value;
+
+        if (totalRoom != null && TotalDay != null) {
+            var tamount = (roomPrice * totalRoom) * TotalDay;
+            document.getElementById('T_amount').value = tamount;
+        }
+
+        var tamount = document.getElementById('T_amount').value;
+        if (tamount != null && document.getElementById('payment').value != "") {
+            var due = tamount - document.getElementById('payment').value;
+            document.getElementById('due').value = due;
+        }
+    }
+
+</script>
+
+@using (Html.BeginForm("Booking", "Home")) 
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal" style="margin-left:30%">
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.hotelname, "Hotel Name", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10" style="width:30%">
+                @Html.EditorFor(model => model.hotelname, new { htmlAttributes = new { @Value = @Session["H_name"], @readonly = "readonly", @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.hotelname, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Room Price", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10" style="width:30%">
+                @Html.Editor("Rprice", new { htmlAttributes = new { @Value = @Session["R_price"], @readonly = "readonly", @class = "form-control", @id = "R_price" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.totalrooms, "Total room for booking", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10" style="width:30%">
+                @Html.EditorFor(model => model.totalrooms, new { htmlAttributes = new { @class = "form-control", @id = "T_room" } })
+                @Html.ValidationMessageFor(model => model.totalrooms, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.totaldays, "Total days", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10" style="width:30%">
+                @Html.EditorFor(model => model.totaldays, new { htmlAttributes = new { @class = "form-control", @id = "T_day", @onblur = "T_A_cal()" } })
+                @Html.ValidationMessageFor(model => model.totaldays, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.bookingdate, "Booking Date", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10" style="width:30%">
+                @Html.EditorFor(model => model.bookingdate, new { htmlAttributes = new { @class = "form-control", @id = "Bdate", @type = "date" } })
+                @Html.ValidationMessageFor(model => model.bookingdate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.name, "Client Name", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10" style="width:30%">
+                @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.mobile, "Mobile", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10" style="width:30%">
+                @Html.EditorFor(model => model.mobile, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.mobile, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.address, "Address", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10" style="width:30%">
+                @Html.EditorFor(model => model.address, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.address, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Total Amount", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10" style="width:30%">
+                @Html.Editor("tamount", new { htmlAttributes = new { @readonly = "readonly", @class = "form-control", @id = "T_amount" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Payment", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10" style="width:30%">
+                @Html.Editor("payment", new { htmlAttributes = new { @placeholder = "For booking 50% must be payment", @class = "form-control", @id = "payment", @onblur = "D_cal()", @onClick = "T_A_cal()" } })
+                @if (@ViewData["error"] != null)
+                {<p style="color:red">@ViewData["error"]</p>}
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.dueamount, "Due amount", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10" style="width:30%">
+                @Html.EditorFor(model => model.dueamount, new { htmlAttributes = new { @readonly = "readonly", @class = "form-control", @id = "due" } })
+                @Html.ValidationMessageFor(model => model.dueamount, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.code, "Verification Code", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10" style="width:30%">
+                @Html.EditorFor(model => model.code, new { htmlAttributes = new { @Value = @Session["V_code"], @readonly = "readonly", @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.code, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                 <h4>@Html.ActionLink("Back", "Index") | 
+                <input type="submit" value="Submit" onclick="final()" class="btn btn-default" />
+                </h4>
+            </div>
+        </div>
+    </div>
+}
+

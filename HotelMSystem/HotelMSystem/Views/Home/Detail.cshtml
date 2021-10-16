@@ -1,0 +1,60 @@
+﻿@model HotelEntity.Hotelinfo
+
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/HomeLayout.cshtml";
+}
+<link href="~/Content/css/detailsStyle.css" rel="stylesheet" />
+<div style="width:40%; margin-left:10%;">
+
+
+    <div class="container " >
+        <div class=" col-sm-6 col-6 col-xs-12 no-padding">
+        <div class="features-table">
+            <ul>
+
+                <li>  Hotel Name </li>
+
+                <li>   Star Rating </li>
+
+                <li>  Facilities </li>
+
+                <li>   Room Price </li>
+
+                <li>   Available Room </li>
+
+                <li>  Availability Status </li>
+
+                <li>    Address </li>
+
+                <li>    Area </li>
+
+
+            </ul>
+        </div>
+    </div>
+        <div class="col-sm-6 col-6 col-xs-12 no-padding">
+            <div class="features-table-free">
+                <ul>
+
+                    <li><b>@Html.DisplayFor(model => model.hotelName)</b></li>
+                    <li>@Html.DisplayFor(model => model.rating)</li>
+                    <li>@Html.DisplayFor(model => model.facilities)</li>
+                    <li>@Html.DisplayFor(model => model.roomprice)</li>
+                    <li>@Html.DisplayFor(model => model.totalrooms)</li>
+                    <li>@Html.DisplayFor(model => model.status)</li>
+                    <li>@Html.DisplayFor(model => model.address)</li>
+                    <li>@Html.DisplayFor(model => model.area)</li>
+
+                </ul>
+            </div>
+
+        </div>
+
+
+
+
+    </div>
+
+    <h4 style="margin-left:28%;;margin-top:5%;">@Html.ActionLink("Back", "Index")</h4>
+</div>

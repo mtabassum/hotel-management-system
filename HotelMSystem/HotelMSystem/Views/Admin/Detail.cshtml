@@ -1,0 +1,77 @@
+﻿@model HotelEntity.Hotelinfo
+
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<div style="width:40%;margin-left:35%;">
+
+    <dl class="dl-horizontal" style="font-size:medium;">
+        <dt>
+            Hotel Name
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hotelName)
+        </dd>
+        <br />
+        <dt>
+            Star Rating
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.rating)
+        </dd>
+        <br />
+        <dt>
+            Facilities
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.facilities)
+        </dd>
+        <br />
+        <dt>
+            Room Price
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.roomprice)
+        </dd>
+        <br />
+        <dt>
+           Total Room
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.totalrooms)
+        </dd>
+        <br />
+        <dt>
+            Availability Status
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.status)
+        </dd>
+        <br />
+        <dt>
+            Address
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.address)
+        </dd>
+        <br />
+        <dt>
+           Area
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.area)
+        </dd>
+    </dl>
+    <h4 style="margin-left:28%;;margin-top:5%;">@Html.ActionLink("Back", "Index")</h4>
+</div>
+

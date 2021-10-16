@@ -1,0 +1,82 @@
+﻿@model HotelEntity.Booking
+
+@{
+    ViewBag.Title = "BookingDetails";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<div style="width:40%;margin-left:35%;">
+
+        <dl class="dl-horizontal" style="font-size:medium;">
+
+            <dt>
+                Client Name
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.name)
+            </dd>
+            <br />
+            <dt>
+                Mobile
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.mobile)
+            </dd>
+            <br />
+            <dt>
+                Address
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.address)
+            </dd>
+            <br />
+            <dt>
+                Hotel Name
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.hotelname)
+            </dd>
+            <br />
+            <dt>
+                Toral Rent Room
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.totalrooms)
+            </dd>
+            <br />
+            <dt>
+                Duration(days)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.totaldays)
+            </dd>
+            <br />
+            <dt>
+                Due Amount
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.dueamount)
+            </dd>
+            <br />
+            <dt>
+                Booking Date
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.bookingdate)
+            </dd>
+
+        </dl>
+    <h4 style="margin-left:28%;;margin-top:5%;">@Html.ActionLink("Back", "Booking")</h4>
+</div>
+
+
+    
+

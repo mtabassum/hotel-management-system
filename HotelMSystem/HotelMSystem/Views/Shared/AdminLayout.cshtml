@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@RenderSection("title", false)</title>
+
+    <script src="~/Scripts/jquery.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    @RenderSection("scripts", false)
+
+    <link href="~/Content/bootstrap_.css" rel="stylesheet" />
+    @RenderSection("styles", false)
+</head>
+<body>
+
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid" style="text-align:center">
+                <h3 style="color:#b3b3b3;margin-right:2%">Hotel Management</h3> 
+            <ul class="nav navbar-nav">
+                <li>@Html.ActionLink("Index", "Index")</li>
+                <li>@Html.ActionLink("Create", "Create")</li>
+                <li>@Html.ActionLink("Booking", "Booking")</li>
+                <li>@Html.ActionLink("Verification", "Verification")</li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>@Html.ActionLink("Logout", "Logout")</li>
+            </ul>
+        </div>
+    </nav>
+
+    <br /><br />
+
+    @RenderBody()
+
+</body>
+</html>

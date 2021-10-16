@@ -1,0 +1,110 @@
+﻿@model HotelEntity.Booking
+
+@{
+    ViewBag.Title = "Verification";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+
+
+
+  <link href="~/Content/css/indexStyle.css" rel="stylesheet" />
+<div style="width:80%; margin-left:10%;">
+
+
+    <div id="flipkart-navbar">
+        <div class="container">
+            <div class="row row1">
+
+            </div>
+            <div class="row row2">
+                <div class="col-sm-2">
+
+                    <h3 style="margin:0px;"><span class="largenav">Verify here</span></h3>
+                </div>
+                <div class="flipkart-navbar-search smallsearch col-sm-8 col-xs-11">
+                    <div class="row">
+
+                        @using (Html.BeginForm("Verification", "Admin"))
+                        {
+                            <input class="flipkart-navbar-input col-xs-11" type="" placeholder="verify code here" name="search">
+                            <button class="flipkart-navbar-button col-xs-1">
+                               <p>Verify</p>
+                            </button>
+
+                        }
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+@*@using (Html.BeginForm("Verification", "Admin"))
+{
+    <div style="width:30%;margin-left:40%;margin-bottom:2%">@Html.TextBox("search")<input type="submit" value="Verify" /></div>
+}*@
+
+<div style="width:40%;margin-left:35%;">
+        @if (@ViewData["Display"] == "true")
+       {
+            <dl class="dl-horizontal" style="font-size:medium;">
+
+                <dt>
+                    Client Name
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.name)
+                </dd>
+                <br />
+                <dt>
+                    Hotel Name
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.hotelname)
+                </dd>
+                <br />
+                <dt>
+                    Toral Rent Room
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.totalrooms)
+                </dd>
+                <br />
+                <dt>
+                    Duration(days)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.totaldays)
+                </dd>
+                <br />
+                <dt>
+                    Due Amount
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.dueamount)
+                </dd>
+                <br />
+                <dt>
+                    Booking Date
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.bookingdate)
+                </dd>
+
+            </dl>
+        }
+</div>
+
+

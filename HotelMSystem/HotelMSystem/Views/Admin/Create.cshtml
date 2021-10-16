@@ -1,0 +1,102 @@
+﻿@model HotelEntity.Hotelinfo
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<script type="text/javascript">
+    function s() {
+        if (document.getElementById('Ar').value > 0) {
+
+            document.getElementById('As').value = "Yes";
+        }
+        else {
+            document.getElementById('As').value = "No";
+        }
+    }
+
+</script>
+@using (Html.BeginForm())
+{
+    <div class="form-horizontal" style="margin-left:30%" >
+        
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.hotelName, "Hotel Name", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10" style="width:30%">
+                @Html.EditorFor(model => model.hotelName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.hotelName, "", new { @class = "text-danger" })
+                @if (@ViewData["E"] != null){<p style="color:red">@ViewData["E"]</p>}
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.rating, "Star Rating",htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10" style="width:30%">
+                @Html.DropDownListFor(model => model.rating, new List<SelectListItem> { new SelectListItem{ Text="1" , Value="1"},
+                                                                                        new SelectListItem{ Text="2" , Value="2"},
+                                                                                        new SelectListItem{ Text="3" , Value="3"},
+                                                                                        new SelectListItem{ Text="4" , Value="4"},
+                                                                                        new SelectListItem{ Text="5" , Value="5"}})
+                @Html.ValidationMessageFor(model => model.rating, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.facilities, "Facilities",htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10" style="width:30%">
+                @Html.TextAreaFor(model => model.facilities, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.facilities, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.roomprice, "Room Price",htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10" style="width:30%">
+                @Html.EditorFor(model => model.roomprice, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.roomprice, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.totalrooms, "Available Room",htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10" style="width:30%">
+                @Html.EditorFor(model => model.totalrooms, new { htmlAttributes = new { @class = "form-control", @id = "Ar", @onblur = "s()" } })
+                @Html.ValidationMessageFor(model => model.totalrooms, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.status, "Availability Status", htmlAttributes: new {  @class = "control-label col-md-2" })
+            <div class="col-md-10" style="width:30%">
+                @Html.EditorFor(model => model.status, new { htmlAttributes = new { @id="As", @readonly = "readonly", @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.status, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.address, "Address",htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10" style="width:30%">
+                @Html.TextAreaFor(model => model.address, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.address, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.area, "Area",htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10" style="width:30%">
+                @Html.EditorFor(model => model.area, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.area, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <h4>@Html.ActionLink("Back", "Index") | 
+                <input type="submit" value="Create" class="btn btn-default"/>
+                </h4>
+            </div>
+        </div>
+    </div>
+}
+

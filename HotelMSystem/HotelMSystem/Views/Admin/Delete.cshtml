@@ -1,0 +1,88 @@
+﻿@model HotelEntity.Hotelinfo
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<h3 style="text-align:center;color:red;">Are you sure you want to delete this?</h3>
+<div style="width:40%;margin-left:35%;margin-top:2%;">
+
+    <dl class="dl-horizontal" style="font-size:medium;">
+        <dt>
+            Hotel Name
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hotelName)
+        </dd>
+        <br />
+        <dt>
+            Star Rating
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.rating)
+        </dd>
+        <br />
+        <dt>
+            Facilities
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.facilities)
+        </dd>
+        <br />
+        <dt>
+            Room Price
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.roomprice)
+        </dd>
+        <br />
+        <dt>
+            Total Room
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.totalrooms)
+        </dd>
+        <br />
+        <dt>
+            Availability Status
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.status)
+        </dd>
+        <br />
+        <dt>
+            Address
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.address)
+        </dd>
+        <br />
+        <dt>
+            Area
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.area)
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color" style="padding-left:26%;">
+            <h4>
+                @Html.ActionLink("Back", "Index") |
+            <input type="submit" value="Delete" class="btn btn-default" style="background-color:#ff4d4d" />
+        </h4>
+        </div>
+    }
+</div>
